@@ -6,6 +6,8 @@ const Form = () => {
     const [firstname, setFirstname] = useState('');
     const [nname, setName] = useState('');
     const [lastname, setLastname] = useState('');
+    const [bdate, setBdate] = useState('');
+    const [passser, setPassser] = useState('');
     const [subject, setSubject] = useState('physical');
     const {tg} = useTelegram();
 
@@ -13,7 +15,9 @@ const Form = () => {
         const data = {
             firstname,
             nname,
-            lastname
+            lastname,
+            bdate,
+            passser
         }
         tg.sendData(JSON.stringify(data));
     }, [firstname, lastname, nname])
@@ -50,6 +54,12 @@ const Form = () => {
     const onChangeLastname = (e) => {
         setLastname(e.target.value)
     }
+    const onChangeBdate = (e) => {
+        setBdate(e.target.value)
+    }
+    const onChangePassser = (e) => {
+        setPassser(e.target.value)
+    }
     const onChangeSubject = (e) => {
         setSubject(e.target.value)
     }
@@ -74,15 +84,24 @@ const Form = () => {
             <input
                 className={'input'}
                 type="text"
-                placeholder={'Имя'}
+                placeholder={'Отчество'}
                 value={lastname}
                 onChange={onChangeLastname}
             />
-
-            <select value={subject} onChange={onChangeSubject} className={'select'}>
-                <option value={'physical'}>Физ. лицо</option>
-                <option value={'legal'}>Юр. лицо</option>
-            </select>
+            <input
+                className={'input'}
+                type="date"
+                placeholder={'Дата рождения'}
+                value={bdate}
+                onChange={onChangeBdate}
+            />
+            <input
+                className={'input'}
+                type="number"
+                placeholder={'Серия паспорта'}
+                value={passser}
+                onChange={onChangePassser}
+            />
         </div>
     );
 };
