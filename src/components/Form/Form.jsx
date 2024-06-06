@@ -7,8 +7,8 @@ const Form = () => {
     const [nname, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [bdate, setBdate] = useState('');
-    const [passser, setPassser] = useState('');
-    const [subject, setSubject] = useState('physical');
+    // const [passser, setPassser] = useState('');
+    
     const {tg} = useTelegram();
 
     const onSendData = useCallback(() => {
@@ -17,10 +17,10 @@ const Form = () => {
             nname,
             lastname,
             bdate,
-            passser
+
         }
         tg.sendData(JSON.stringify(data));
-    }, [firstname, lastname, nname])
+    }, [firstname, lastname, nname, bdate])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
@@ -57,12 +57,7 @@ const Form = () => {
     const onChangeBdate = (e) => {
         setBdate(e.target.value)
     }
-    const onChangePassser = (e) => {
-        setPassser(e.target.value)
-    }
-    const onChangeSubject = (e) => {
-        setSubject(e.target.value)
-    }
+
 
     return (
         <div className={"form"}>
@@ -91,17 +86,11 @@ const Form = () => {
             <input
                 className={'input'}
                 type="date"
-                placeholder={'Дата рождения'}
+                placeholder={'Дата составления договора'}
                 value={bdate}
                 onChange={onChangeBdate}
             />
-            <input
-                className={'input'}
-                type="number"
-                placeholder={'Серия паспорта'}
-                value={passser}
-                onChange={onChangePassser}
-            />
+
         </div>
     );
 };
