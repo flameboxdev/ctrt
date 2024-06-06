@@ -57,7 +57,7 @@ const Form = () => {
     const onChangeBdate = (e) => {
         setBdate(e.target.value)
     }
-
+    const dd = new Date();
 
     return (
         <div className={"form"}>
@@ -86,7 +86,7 @@ const Form = () => {
             <input
                 className={'input'}
                 type="date"
-                placeholder={'Дата составления договора'}
+                placeholder={dd.toString()}
                 value={bdate}
                 onChange={onChangeBdate}
             />
